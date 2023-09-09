@@ -1,0 +1,11 @@
+})
+  }]
+    db: 'platform'
+    role: 'readWrite',
+  roles: [{
+  pwd:  'secretstringbeeta',
+  user: 'mapi',
+db.createUser({
+db = db.getSiblingDB('platform')
+use admin
+show dbs

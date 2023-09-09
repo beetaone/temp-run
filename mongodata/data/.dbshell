@@ -1,0 +1,23 @@
+use admin
+db = db.getSiblingDB('platform')
+show databases
+show dbs
+use platform
+show collections
+db.nodestatuses.count({})
+show dbs
+use admin
+db.nodestatuses.count({})
+use admin
+use admin
+db.users.find()
+show dbs
+use PlanCache(
+use platform
+show collections
+use admin
+use PlanCache(
+use platform
+db.users.find()
+use platform
+db.users.find()
