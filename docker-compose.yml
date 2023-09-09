@@ -3,7 +3,8 @@ services:
   mongo:
     image: mongo:5.0.21-rc0-focal
     volumes:
-      - ./mongodata/:/data/
+      - ./mongodata/data:/data/db
+      - ./mongodata/log:/data/log
       - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
     ports:
       - 27017:27017
@@ -26,29 +27,29 @@ services:
     depends_on:
       - mongo
 
-  # broker:
-  #   image: hivemq/hivemq4
-  #   ports:
-  #     - 8080:8080
-  #     - 1883:1883
+  broker:
+    image: hivemq/hivemq4
+    ports:
+      - 8080:8080
+      - 1883:1883
 
-  # mapi:
-  #   image: sanyamarya/beeta-mapi
-  #   volumes:
-  #     - ./mapi-logs:/home/node/app/log
-  #   ports:
-  #     - 3000:3000
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - mongo
-  #     - broker
+  mapi:
+    image: sanyamarya/beeta-mapi
+    volumes:
+      - ./mapi-logs:/home/node/app/log
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - broker
 
-  # mapi-web:
-  #   image: sanyamarya/beeta-manager
-  #   ports:
-  #     - 4200:80
-  #   depends_on:
-  #     - mapi
-  #   env_file:
-  #     - .env
+  mapi-web:
+    image: sanyamarya/beeta-manager
+    ports:
+      - 4200:80
+    depends_on:
+      - mapi
+    env_file:
+      - .env
