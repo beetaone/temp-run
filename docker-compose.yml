@@ -45,7 +45,7 @@ services:
       - mongo
       - broker
 
-  mapi-web:
+  beeta-web:
     image: sanyamarya/beeta-manager
     ports:
       - 4200:80
